@@ -1,1 +1,0 @@
-const MONGO_URL ="mongodb+srv://nodebucket_user:s3cret@cluster0.f36akkm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
