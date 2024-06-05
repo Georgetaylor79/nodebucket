@@ -14,6 +14,7 @@ const router = express.Router();
 
 router.get("/:empId", (req, res, next) => {
   try {
+    console.log (req.params.empId);
     let { empId } = req.params;
     empId = parseInt(empId, 10);
 
