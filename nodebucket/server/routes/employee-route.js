@@ -23,9 +23,9 @@ router.get("/:empId", (req, res, next) => {
       return next(createError(400, "Input must be a number"));
     }
 
-    //
+    // database query is handled
     mongo(async db => {
-      const employee = await db.collection("employees").findOne({ empId});
+      const employee = await db.collection("employees").findOne({ empId });
 
       if (!employee) {
         console.error("Employee not found", empId);
