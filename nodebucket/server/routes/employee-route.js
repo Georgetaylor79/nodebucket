@@ -13,7 +13,7 @@ const router = express.Router();
 // Invalid: http://localhost:3000/api/employee/9999
 
 router.get("/:empId", (req, res, next) => {
-  try{
+  try {
     let { empId } = req.params;
     empId = parseInt(empId, 10);
 
@@ -37,6 +37,6 @@ router.get("/:empId", (req, res, next) => {
     console.error("Error:", err);
     next(err);
   }
-    })
+    });
 
     module.exports = router;
