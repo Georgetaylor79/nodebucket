@@ -37,6 +37,6 @@ router.get("/:empId", (req, res, next) => {
     console.error("Error:", err);
     next(err);
   }
-    });
+});
 
     module.exports = router;
