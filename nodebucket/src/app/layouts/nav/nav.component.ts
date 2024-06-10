@@ -1,11 +1,6 @@
-/**
- * Title: nav.component.ts
- * Author: Professor Krasso
- * Date: 8/5/23
- */
 
-// imports statements
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 export interface AppUser {
@@ -31,7 +26,12 @@ export class NavComponent {
       }
       console.log('Signed in as ', this.appUser);
     }
+  }
 
+  signout() {
+    console.log('Removing session user from the cookie');
+    this.cookieService.deleteAll();
+    window.location.href = '/';
   }
 
 }

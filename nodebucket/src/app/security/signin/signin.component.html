@@ -14,9 +14,22 @@
         <form [formGroup]="signinForm" (ngSubmit)="signin(); signinForm.reset()">
           <div>
             <label for="empId" class="form-label">Employee Id</label>
-            <input type="text" class="form-control" id
+            <input type="text" class="form-control" id="empId" formControlName="empId"/>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark">
+              <span *ngIf="!isLoading">Sign in</span>
+
+              <div *ngIf="isLoading">
+
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </div>
+            </button>
           </div>
         </form>
       </div>
     </div>
+      <a routerLink="/" class="text-dark text-underline-hover">Return</a>
+    </div>
   </div>
+</div>

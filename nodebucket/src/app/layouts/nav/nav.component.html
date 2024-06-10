@@ -5,7 +5,7 @@
   <button
     class="navbar-toggler"
     type="button"
-    data-bs-toggle="collaspe"
+    data-bs-toggle="collapse"
     data-bs-target="#navbarResponsive"
     aria-controls="navbarResponsive"
     aria-expanded="false"
@@ -27,6 +27,10 @@
       </li>
       <li>
         <a href="#" class="nav-link">Contact Us</a>
+      </li>
+
+      <li *ngIf="!isSignedIn">
+        <a class="nav-link" routerLink="/security/signin">Sign In</a>
       </li>
 
       <li *ngIf="isSignedIn" class="nav-item dropdown">
