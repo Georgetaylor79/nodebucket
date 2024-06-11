@@ -69,7 +69,7 @@ router.get('/:empId/tasks', (req, res, next) => {
 
       // If there are no tasks found for the employee Id; return a 404 error object to our middleware error handler
       if(!tasks) {
-        return next(createError(404, `Tasks not found for employee ID ${empId} `));
+        return next(createError(404, `Tasks not found for employee ID ${empId}`));
       }
 
         res.send(tasks);
