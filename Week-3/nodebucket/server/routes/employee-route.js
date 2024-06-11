@@ -1,8 +1,12 @@
 "use strict";
 
 const express = require("express");
-const { mongo } = require("../utils/mongo");
+const { mongo } = require("../utils/mongo"); // require teh mongo module from the utils folder
 const createError = require("http-errors");
+const Ajv = require('ajv');
+const { ObjectId } = require('mongo');
+
+
 
 const router = express.Router();
 
@@ -11,6 +15,9 @@ const router = express.Router();
 //
 // Invalid: http://localhost:3000/api/employees/foo
 // Invalid: http://localhost:3000/api/employee/9999
+
+const ajv = new Ajv(); // create a new instance of the Ajv object from the npm package
+
 
 router.get("/:empId", (req, res, next) => {
   try {
@@ -80,4 +87,78 @@ router.get('/:empId/tasks', (req, res, next) => {
     next(err);
   }
 });
+
+
+/**
+ *  Create Task API;
+ */
+
+const taskSchema = {
+  type: 'object',
+  properties: {
+    text: { type: 'string' }
+  },
+  required: ['text'],
+  additionalProperties: false
+};
+
+
+router.post('/:empId/tasks', (req, res, next) => {
+  try {
+
+    // Check if the empId from the req params is a number
+    let{ empId } = req.params;
+    empId = parseInt(empId, 10);
+
+    // Check to see if the parseInt function returns a number of NaN; if NaN it means the empId  is not a number,
+    if (isNaN(empId)) {
+      return next (createError(400, 'Employee ID must be a number'));
+    }
+
+    mongo(async db => {
+
+      const employee = await db.collection('employees').findOne( { empId: empId} );
+
+      // if the employee is not found return a 404 error
+      if (!employee) {
+        return next(createError(404, 'Employee not found with empId', empId));
+      }
+
+
+
+      const validator = ajv.compile(taskSchema);
+      const valid = validator(req.body )
+
+
+      if (!valid) {
+        return next(createError(400, 'Invalid task payload', validator.errors))
+      }
+
+      const newTask = {
+        _id: new ObjectId(),
+        text: req.body.text
+      }
+
+      //call the mongo module and update the employee collection with the new task in the todo column
+      const result = await db.collection('employees').updateOne(
+        {empId: empId },
+        { $push: { todo: newTask }
+      })
+
+      // check to see if the modified count is updated; if so then the task was added to the employee field.
+      if (!result.modifiedCount) {
+        return next(createError(400, 'Unable to create task'));
+      }
+
+      res.status(201).send({ id: newTask._id});
+
+    },next);
+
+  } catch (err) {
+    console.error('err', err);
+    next(err);
+  }
+});
+
+
     module.exports = router; // end module.exports = router
