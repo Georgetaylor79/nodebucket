@@ -51,6 +51,7 @@ export class TasksComponent {
 
       }
     });
+  }
 
     createTask(form: NgForm) {
       if (form.valid) {
