@@ -3,9 +3,9 @@
   <h1>My Tasks</h1>
 <!--tasks form-->
 <!---->
-  <form class="task-form">
-    <input type="text" required placeholder="Enter a new task">
-    <input type="submit" value="Add Task">
+  <form #taskForm="ngForm" (ngSubmit)="createTask(taskForm); taskForm.reset();"class="task-form">
+    <input type="text" name="task" ngModel required placeholder="Enter a new task">
+    <input type="submit"[disabled]="!taskForm.valid" value="Add Task">
   </form>
 
 <!--tasks container-->
@@ -16,7 +16,13 @@
       <h2>To Do</h2>
 
       <div class="task-box">
+        <div *ngIf="todo.length === 0 || !todo">
+          No task to do yet!
+        </div>
 
+        <div *ngFor="let item of todo" class="task-card">
+          {{ item.text }}
+        </div>
       </div>
     </div>
 
@@ -27,6 +33,13 @@
 
     <div class="task-box">
 
+      <div * ngIf="done.length === 0 || !done class="no-task">
+        No task done yet!
+      </div>
+
+      <div *ngFor="let item of done" class="task-card">
+        {{ item.text }}
+      </div>
     </div>
     </div>
   </div>
