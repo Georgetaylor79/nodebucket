@@ -33,5 +33,4 @@ export class TasksComponent {
     this.done = [];
   }
 
-
 }
