@@ -29,7 +29,7 @@ export class TasksComponent {
   todo: Item[];
   done: Item[];
 
-  // mytask link,
+  // myTask link,
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
     this.employee= {} as Employee;
