@@ -16,6 +16,7 @@ import { NavComponent } from './layouts/nav/nav.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NgForm } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClient } from '@angular/common/http';
 import { Subscriber } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export interface Item {
   _id: string;
