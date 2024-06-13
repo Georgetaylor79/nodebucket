@@ -1,0 +1,37 @@
+.tasks-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.tasks-columns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tasks-column {
+  width: 45%;
+
+}
+
+.tasks-column h2 {
+  text-align: center;
+}
+
+.task-box {
+  border: 1px solid #ccc;
+  padding: 10 px;
+  min-height: 300px;
+
+}
+/**/
+.tasks-form {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-form input[type="text"] {
+  flex-grow: 1;
+}
