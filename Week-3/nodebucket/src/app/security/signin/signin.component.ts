@@ -34,8 +34,7 @@ export class SigninComponent {
       this.sessionUser = {} as SessionUser;
       this.errorMessage = '';
     }
-  }
-
+  
   signin() {
     this.isLoading = true;
 
@@ -54,7 +53,7 @@ export class SigninComponent {
       next: (employee: any) => {
         console.log('employee,' employee)
 
-        this.sessionUser = employee;
+        this.sessionUser = employee
         this.cookieService.set('session_user', empId, 1);
         this.cookieService.set('session_name', `${employee.firstName} ${employee.lastName}`, 1)
 
