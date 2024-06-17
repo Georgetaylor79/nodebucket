@@ -17,6 +17,8 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +27,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     BaseLayoutComponent,
     NavComponent,
     FooterComponent,
-    TasksComponent
+    TasksComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

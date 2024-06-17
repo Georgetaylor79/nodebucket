@@ -12,6 +12,8 @@ import { SecurityRoutingModule } from './security-routing.module';
 import { SecurityComponent } from './security.component';
 import { SigninComponent } from './signin/signin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import{ HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    SecurityRoutingModule
+    SecurityRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule
   ]
 })
 export class SecurityModule { }
