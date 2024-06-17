@@ -1,53 +1,42 @@
-<nav class="ps-3 navbar navbar-expanded-sm navbar-dark bg-dark fixed-top">
+<!--navbar-->
+<nav class="ps-3 navbar   fixed-top">
 
-  <a routerLink="/" class="navbar-brand">Nodebucket</a>
+  <!--Navbar links-->
+  <a routerLink="/home" class="navbar-brand title">Nodebucket</a>
 
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#navbarResponsive"
-    aria-controls="navbarResponsive"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    >
+  <!--Hamburger menu icon-->
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 
-  <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
   </button>
 
-  <!--navigation links-->
-
-  <div class="collapse navbar-collapse" id="navbarResponse">
+  <!--data-bs-target targets the div with the links so for small screen sizes its going to expand, by saying navbar collapse you are initially hiding the menu-->
+  <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ms-auto p-2">
       <li class="nav-item">
+        <!--routerLink is specific to angular and references the routing file. # does nothing its a placeholder.-->
         <a routerLink="/home" class="nav-link">Home</a>
       </li>
       <li>
-        <a href="#" class="nav-link">About Us</a>
+        <!--When routing this you would use the routerLink href is just a placeholder right now.-->
+        <a routerLink="#" class="nav-link">About Us</a>
       </li>
       <li>
-        <a href="#" class="nav-link">Contact Us</a>
+        <a routerLink="/contact" class="nav-link">Contact Us</a>
       </li>
 
+      <!--Condition to check if the user is signed in.-->
       <li *ngIf="!isSignedIn">
         <a class="nav-link" routerLink="/security/signin">Sign In</a>
       </li>
-
       <li *ngIf="isSignedIn" class="nav-item dropdown">
-        <a href="#"
-           class="nav-link pe-3"
-           id="navbarDropdown"
-           role="button"
-           data-bs-toggle="dropdown"
-           aria-expanded="false"
-           >
+        <a href="/task-management/my-tasks" class="nav-link pe-3" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
           <span class="material-icons">person</span>
         </a>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li class="dropdown-item">
-            Signed in as {{appUser.fullName}}
-          </li>
+          <li class="dropdown-item">Signed in as {{ appUser.fullName }}</li>
           <hr />
           <li>
             <a routerLink="/tasks" class="dropdown-item">My Tasks</a>

@@ -33,9 +33,9 @@
 
     <div class="task-box">
 
-      <div * ngIf="done.length === 0 || !done class="no-task">
+      <div * ngIf="done.length === 0 || !done" class="no-task">
         No task done yet!
-      </div>
+
 
       <div *ngFor="let item of done" class="task-card">
         {{ item.text }}
