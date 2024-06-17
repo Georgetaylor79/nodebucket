@@ -1,0 +1,46 @@
+<div class="tasks-container">
+
+  <h1>My Tasks</h1>
+<!--tasks form-->
+<!---->
+  <form #taskForm="ngForm" (ngSubmit)="createTask(taskForm); taskForm.reset();"class="task-form">
+    <input type="text" name="task" ngModel required placeholder="Enter a new task">
+    <input type="submit"[disabled]="!taskForm.valid" value="Add Task">
+  </form>
+
+<!--tasks container-->
+  <div class="tasks-columns">
+<!--task todo column-->
+
+    <div class="tasks-column">
+      <h2>To Do</h2>
+
+      <div class="task-box">
+        <div *ngIf="todo.length === 0 || !todo">
+          No task to do yet!
+        </div>
+
+        <div *ngFor="let item of todo" class="task-card">
+          {{ item.text }}
+        </div>
+      </div>
+    </div>
+
+<!--tasks done -->
+<!--tasks-column controls column width-->
+  <div class="tasks-column">
+    <h2>Done</h2>
+
+    <div class="task-box">
+
+      <div * ngIf="done.length === 0 || !done" class="no-task">
+        No task done yet!
+
+
+      <div *ngFor="let item of done" class="task-card">
+        {{ item.text }}
+      </div>
+    </div>
+    </div>
+ </div>
+</div>
