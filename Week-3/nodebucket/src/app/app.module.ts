@@ -18,6 +18,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     FooterComponent,
     TasksComponent,
+    ContactComponent,
 
   ],
   imports: [
