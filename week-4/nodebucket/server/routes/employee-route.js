@@ -5,6 +5,7 @@ const { mongo } = require("../utils/mongo"); // require teh mongo module from th
 const createError = require("http-errors");
 const Ajv = require("ajv");
 const { ObjectId } = require("mongo");
+const { Double } = require("mongodb");
 
 const router = express.Router();
 
@@ -151,5 +152,121 @@ router.post("/:empId/tasks", (req, res, next) => {
     next(err);
   }
 });
+
+
+const tasksSchema = {
+  type: 'object',
+  required: ['todo', 'done'],
+  additionalProperties: false,
+  properties: {
+    todo: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          _id: { type: 'string' },
+          text: { type: 'string' }
+        },
+        required: [ '_id', 'text'],
+        additionalProperties: false
+      }
+    },
+    done: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          _id: { type: 'string'},
+          text: { type: 'string'}
+        },
+        required: [ '_id', 'text'],
+        additionalProperties: false
+      }
+    }
+  }
+};
+
+//Update task API
+router.put('/:empId/tasks', (req, res, next) => {
+  try {
+
+    let { empId } = req.params;
+    empId = parseInt(empId, 10)
+
+    if (isNaN(empId)) {
+      return next(createError(400, 'Employee ID must be a number'));
+    }
+
+    mongo(async db => {
+      const employee = await db.collection('employees').findOne({ empId: empId} );
+
+      if(!employee) {
+
+        console.log('empId', empId);
+        return next(createError(404, `Employee not found with empId,${empId}`));
+      }
+
+      const tasks = req.body;
+      const validator = ajv.compile(taskSchema);
+      const valid = validator(tasks);
+
+      if (!valid) {
+        return next(createError(400, 'Invalid task payload', validator.error));
+      }
+
+      const result = await db.collection('employees').updateOne(
+        { empId: empId },
+        { $set: { todo: tasks.todo, done: task.done }}
+      )
+
+      res.status(204).send();
+      }, next);
+
+  } catch (err) {
+    console.error('err', err);
+    next(err);
+  }
+});
+
+
+router.delete('/:empId/tasks/:taskId', (req, res, next) => {
+  try {
+    let { empId } = req.params;
+    let { taskId } = req.params;
+
+    empId = parseInt(empId, 10);
+
+    if (isNaN(empId)){
+      return next(createError(400, 'Employee ID must be a number'));
+    }
+
+    mongo( async db => {
+      let emp = await db.collection('employees').findOne({ empId: empId });
+
+      if (!emp) {
+        return next (createError(404, `Employee not found with empId ${empId}`));
+      }
+
+      if (!emp.todo) emp.todo = [];
+      if (!emp.done) emp.done = [];
+
+      const todo = emp.todo.filter(t => t._id.toString() !== taskId.toString());
+      const done = emp.done.filter(t => t._id.toString() !== taskId.toString());
+
+      const result = await db.collection('employees').updateOne(
+        { empId: empId},
+        { $set: { todo: todo, done: done }}
+      )
+
+        res.status(204).send();
+    }, next);
+  }
+  catch (err) {
+    console.error('err', err);
+    next(err);
+  }
+});
+
+
 
 module.exports = router; // end module.exports = router
