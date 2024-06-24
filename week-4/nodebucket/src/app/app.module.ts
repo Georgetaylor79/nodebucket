@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AboutComponent } from './about/about.component';
     TasksComponent,
     ContactComponent,
     AboutComponent,
+    NotFoundComponent,
 
   ],
   imports: [
