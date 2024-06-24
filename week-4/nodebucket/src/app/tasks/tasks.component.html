@@ -11,20 +11,49 @@
 <!--tasks container-->
   <div class="tasks-columns">
 <!--task todo column-->
+<div class="col-sm-5 col-md-4 col-lg-3">
+  <h4 class="text-center">ToDo</h4>
+  <div class="p-3 border bg-light">
 
-    <div class="tasks-column">
-      <h2>To Do</h2>
+    <div class="container task-column"
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    (cdkDropListDropped)="drop($event)"****
 
-      <div class="task-box">
-        <div *ngIf="todo.length === 0 || !todo">
-          No task to do yet!
+    <div *ngIf="!todo || todo.length === 0">
+      <div class="alert alert-info">
+        No tasks to do yet!
+      </div>
+    </div>
+
+    <div *ngFor="let item of todo" cdkDrag class="mt-2">
+
+      <div class="row border bg-white">
+        <div class="col-sm-6">
+          <div class="card-body">
+            {{ item.text }}
+          </div>
         </div>
 
-        <div *ngFor="let item of todo" class="task-card">
-          {{ item.text }}
+        <div class="col-sm-6">
+          <div class="card-body float-end">
+            <button (click) ="deleteTask(item._id)" class="btn">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 d-sm-none d-md-none d-lg-none d-xl-none d-grid gap-2 p-2">
+          <button (click)="deleteTask(item._id)" class="btn btn-secondary">Delete</button>
         </div>
       </div>
     </div>
+  </div>
+ </div>
+</div>
+<!--end todo column-->
 
 <!--tasks done -->
 <!--tasks-column controls column width-->
