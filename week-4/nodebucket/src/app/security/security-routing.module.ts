@@ -1,7 +1,7 @@
 /**
  * Title: security-routing.module.ts
- * Author: Professor Krasso
- * Date: 8/5/23
+ * Author: George Taylor
+ * Date: 06.23.2024
  */
 
 // imports statements

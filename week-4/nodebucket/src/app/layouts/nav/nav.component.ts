@@ -1,3 +1,12 @@
+/**
+ * Title: contact.component.html
+ * Author: George Taylor
+ * Date: 06.23.2024
+ */
+
+
+//import statements
+
 
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
