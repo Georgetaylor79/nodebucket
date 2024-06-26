@@ -11,6 +11,7 @@ import { BaseLayoutComponent } from './layouts/base-layout/base-layout.component
 import { HomeComponent } from './home/home.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { authGuard } from './shared/auth.guard';
+import { SigninComponent } from './security/signin/signin.component';
 
 // routes array with a path, component, and title for each route in the application (e.g. home, about, contact, etc.)
 const routes: Routes = [
@@ -32,9 +33,18 @@ const routes: Routes = [
         path: 'tasks',
         component: TasksComponent,
         canActivate: [authGuard],
+      },
+      {
+        path: 'sign-in',
+        component: SigninComponent
       }
     ]
   },
+  {
+        path:'not-found',
+        redirectTo: 'session/not-found'
+  },
+  
   {
     // path for the security module (e.g. login, register, forgot password, etc.)
     path: 'security',

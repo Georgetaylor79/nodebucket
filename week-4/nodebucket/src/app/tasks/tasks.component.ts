@@ -33,11 +33,11 @@ export class TasksComponent {
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.empId = parseInt(this.cookieService.get('session_user'), 10);
     this.employee= {} as Employee;
-    this.todo =[];
+    this.todo =[ ];
     this.done = [];
 
 //my task link,
-    this.http.get('/api/employee/${this.empId'). subscribe({
+    this.http.get(`/api/employee/${this.empId}`). subscribe({
       next: (emp: any) => {
         this.employee = emp;
       },
