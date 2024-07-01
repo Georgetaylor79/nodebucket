@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscriber } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { item } from './item.interface';
+import { Item } from './item.interface';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export interface Item {
