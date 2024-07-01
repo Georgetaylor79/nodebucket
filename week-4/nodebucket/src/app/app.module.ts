@@ -24,7 +24,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TaskRoutingModule } from './tasks/tasks-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
 @NgModule({
   declarations: [
     AppComponent,
