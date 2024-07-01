@@ -1,3 +1,11 @@
+/**
+ * Title: task.component.ts
+ * Author: George Taylor
+ * 6.30.2024
+ */
+
+
+
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -5,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subscriber } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { item } from './item.interface';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 export interface Item {
   _id: string;
