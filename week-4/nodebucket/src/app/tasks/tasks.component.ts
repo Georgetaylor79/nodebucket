@@ -16,10 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { Item } from './item.interface';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
-export interface Item {
-  _id: string;
-  text: string;
-}
 
 export interface Employee {
   empId: number;
@@ -32,6 +28,8 @@ export interface Employee {
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
+
+//Exporting the task component class
 export class TasksComponent {
   //Local variables
   empId: number;

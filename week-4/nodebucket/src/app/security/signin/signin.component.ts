@@ -1,3 +1,12 @@
+/**
+ * Title: signin.component.ts
+ * Author: George Taylor
+ * 6.30.2024
+ */
+
+
+
+
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute,Router } from '@angular/router';

@@ -1,3 +1,13 @@
+<!--
+/**
+ * Title: task.component.html
+ * Author: George Taylor
+ * 6.30.2024
+ */
+
+
+-->
+
 <div class="tasks-container">
 
   <h1>My Tasks</h1>
@@ -20,13 +30,15 @@
     #todoList="cdkDropList"
     [cdkDropListData]="todo"
     [cdkDropListConnectedTo]="[doneList]"
-    (cdkDropListDropped)="drop($event)
+    (cdkDropListDropped)="drop($event)">
 
-    <div *ngIf="!todo || todo.length === 0">
+
+    <dv *ngIf="!todo || todo.length === 0">
       <div class="alert alert-info">
         No tasks to do yet!
       </div>
     </div>
+
 
     <div *ngFor="let item of todo" cdkDrag class="mt-2">
 
