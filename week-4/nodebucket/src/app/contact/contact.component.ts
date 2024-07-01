@@ -1,3 +1,10 @@
+/**
+ * Title: contact.component.ts
+ * Author: George Taylor
+ * 6.30.2024
+ */
+
+
 import { Component } from '@angular/core';
 
 @Component({
