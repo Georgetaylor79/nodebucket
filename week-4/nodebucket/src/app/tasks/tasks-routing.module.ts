@@ -6,7 +6,7 @@
 
 
 import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { TasksComponent } from "./tasks.component";
 
 // Task Component Route
